@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>1.5.4.RELEASE</version>
+  </parent>
+
+  <groupId>com.jiaxin</groupId>
+  <artifactId>springboot-dubbo</artifactId>
+  <packaging>pom</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <modules>
+    <module>dubbo-api</module>
+    <module>dubbo-core</module>
+    <module>dubbo-web</module>
+  </modules>
+
+  <repositories>
+    <repository>
+      <id>nexus</id>
+      <name>Team Nexus Repository</name>
+      <url>http://47.107.76.215:8081/nexus/content/groups/public/</url>
+    </repository>
+  </repositories>
+  <pluginRepositories>
+    <pluginRepository>
+      <id>nexus</id>
+      <name>Team Nexus Repository</name>
+      <url>http://47.107.76.215:8081/nexus/content/groups/public/</url>
+    </pluginRepository>
+  </pluginRepositories>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <tomcat-embed>8.5.15</tomcat-embed>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <spring.version>4.3.9.RELEASE</spring.version>
+    <org.springframework.boot>1.5.4.RELEASE</org.springframework.boot>
+    <logback.version>1.1.7</logback.version>
+    <slf4j.version>1.7.21</slf4j.version>
+    <fastjson.version>1.2.44</fastjson.version>
+    <commons-collections.version>3.2.1</commons-collections.version>
+    <commons-lang3.version>3.4</commons-lang3.version>
+    <logback-ext-spring>0.1.4</logback-ext-spring>
+    <commons.io.version>2.6</commons.io.version>
+    <httpclient.version>4.5.2</httpclient.version>
+    <httpmime.version>${httpclient.version}</httpmime.version>
+    <httpasyncclient.version>4.0</httpasyncclient.version>
+    <fastJson.version>1.2.44</fastJson.version>
+    <hibernate.version>4.2.0.Final</hibernate.version>
+    <pagehelper.version>4.1.6</pagehelper.version>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <!--工具包 begin-->
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-lang3</artifactId>
+        <version>${commons-lang3.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>fastjson</artifactId>
+        <version>${fastjson.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpclient</artifactId>
+        <version>${httpclient.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpmime</artifactId>
+        <version>${httpmime.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpasyncclient</artifactId>
+        <version>${httpasyncclient.version}</version>
+      </dependency>
+
+      <!--<dependency>-->
+        <!--<groupId>org.hibernate</groupId>-->
+        <!--<artifactId>hibernate-validator</artifactId>-->
+        <!--<version>${hibernate.version}</version>-->
+      <!--</dependency>-->
+
+      <!--工具包 end-->
+
+      <!--springboot start-->
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot</artifactId>
+        <version>${org.springframework.boot}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter</artifactId>
+        <version>${org.springframework.boot}</version>
+        <exclusions>
+          <!--排除 YAML作为程序配置文件-->
+          <exclusion>
+            <artifactId>snakeyaml</artifactId>
+            <groupId>org.yaml</groupId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-autoconfigure</artifactId>
+        <version>${org.springframework.boot}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-test-autoconfigure</artifactId>
+        <version>${org.springframework.boot}</version>
+      </dependency>
+      <!--springboot end-->
+
+      <!--日志 start-->
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-logging</artifactId>
+        <version>${org.springframework.boot}</version>
+      </dependency>
+      <!--日志 end-->
+
+      <!--mybaits start-->
+      <dependency>
+        <groupId>org.mybatis.spring.boot</groupId>
+        <artifactId>mybatis-spring-boot-starter</artifactId>
+        <version>1.3.2</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.mybatis</groupId>
+        <artifactId>mybatis</artifactId>
+        <version>3.4.6</version>
+      </dependency>
+      <!--mybaits end-->
+
+      <!--数据库连接池 start-->
+      <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>druid</artifactId>
+        <version>1.0.9</version>
+      </dependency>
+      <!--数据库连接池 end-->
+
+      <!-- rpc相关依赖 begin -->
+      <dependency>
+        <groupId>com.welab</groupId>
+        <artifactId>dubbox-spring-boot-starter</artifactId>
+        <version>1.3.0-SNAPSHOT</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>dubbo</artifactId>
+        <version>2.8.4</version>
+        <exclusions>
+          <exclusion>
+            <artifactId>spring-web</artifactId>
+            <groupId>org.springframework</groupId>
+          </exclusion>
+          <exclusion>
+            <artifactId>javax.servlet-api</artifactId>
+            <groupId>javax.servlet</groupId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <!-- rpc相关依赖 end -->
+
+      <!-- AspectJ面向切面的依赖 begin -->
+      <dependency>
+        <groupId>org.aspectj</groupId>
+        <artifactId>aspectjrt</artifactId>
+        <version>1.6.11</version>
+      </dependency>
+      <dependency>
+        <groupId>org.aspectj</groupId>
+        <artifactId>aspectjweaver</artifactId>
+        <version>1.7.2</version>
+      </dependency>
+      <dependency>
+        <groupId>org.aspectj</groupId>
+        <artifactId>aspectjlib</artifactId>
+        <version>1.6.2</version>
+      </dependency>
+      <!-- AspectJ面向切面的依赖 end -->
+
+      <dependency>
+        <groupId>com.github.pagehelper</groupId>
+        <artifactId>pagehelper</artifactId>
+        <version>${pagehelper.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.welab</groupId>
+        <artifactId>thor-operation-api</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+</project>
